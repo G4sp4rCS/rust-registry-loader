@@ -1,0 +1,29 @@
+# Ignorar el directorio de compilación de Rust
+registry_loader/target/
+
+# Archivos de dependencias
+Cargo.lock
+
+# Archivos binarios generados
+*.exe
+*.dll
+*.lib
+*.pdb
+*.exp
+
+# Archivos temporales de compilación
+*.d
+*.json
+
+# Archivos temporales del sistema
+*.log
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# JetBrains IDE (CLion, IntelliJ, etc.)
+.idea/
